@@ -1,12 +1,12 @@
 // EDIT YOUR PORTFOLIO DETAILS HERE. Replace the sample entries with your own.
 const PORTFOLIO = {
   profile: {
-    name: "Mewtwo",
+    name: "Manuel Giron",
     brand: "Mewtwo.github.io",
-    handle: "mewtwo",
-    discipline: "Mechanical Engineering",
-    role: "Aerospace",
-    availability: "Open to mechanical engineering opportunities",
+    handle: "Manuel Giron",
+    discipline: "Physics",
+    role: "Theoretical",
+    availability: "Open to applied, experimental and theoretical physics opportunities",
     summary: "I turn engineering concepts into practical designs through CAD, analysis, and hands-on problem solving.",
     terminalTagline: "Design carefully. Build reliably.",
     contactPrompt: "Let's build something that works.",

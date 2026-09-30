@@ -2,7 +2,7 @@
 const PORTFOLIO = {
   profile: {
     name: "Manuel Giron",
-    brand: "Mewtwo.github.io",
+    brand: "ManuelGiron.github.io",
     handle: "Manuel Giron",
     discipline: "Physics",
     role: "Theoretical",

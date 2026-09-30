@@ -1,9 +1,10 @@
 {
-  "name": "naibys-alzugaray-portfolio",
+  "name": "Manuel-Giron-portfolio",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "packageManager": "pnpm@12.3.4",
+"homepage": "https://phys-manuelgiron.github.io/",
   "scripts": {
     "dev": "node server.mjs"
   }

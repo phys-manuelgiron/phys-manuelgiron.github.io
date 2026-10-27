@@ -1471,3 +1471,56 @@ figcaption {
 /* Keep the dark experiment's text independent of the research prose styles. */
 .research-feature p.scatter-status { color: #d0dec8; font-size: 10px; line-height: 1.6; }
 .research-feature .scatter-lab .model-details p { color: #c0d4be; font-size: 10px; line-height: 1.8; }
+
+/* Spaced research points, with a separate card at each point. */
+.research-orbit { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; min-height: 390px; border-block: 1px solid var(--line); background-image: radial-gradient(#aebbad7d .8px, transparent .8px); background-size: 24px 24px; }
+.map-connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.map-connections path { fill: none; stroke: #a9baa8; stroke-width: 1; stroke-dasharray: 3 7; }
+.map-item { --node-y: 75px; position: relative; padding-top: var(--node-y); min-width: 0; }
+.map-item:nth-of-type(2) { --node-y: 40px; }
+.map-item:nth-of-type(3) { --node-y: 100px; }
+.map-point { position: relative; display: grid; grid-template-columns: 14px 1fr; align-items: center; gap: 4px 16px; text-align: left; width: fit-content; max-width: 100%; margin-inline: auto; padding: 10px 14px; background: var(--paper); border: 0; color: var(--ink); font-size: 14px; }
+.map-dot { grid-row: span 2; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 5px var(--paper),0 0 0 6px #a7b8a4; transition: box-shadow .2s; }
+.map-point small { font: 9px var(--mono); color: var(--muted); }
+.map-item.is-open .map-dot { box-shadow: 0 0 0 6px #e1e9dc,0 0 0 7px var(--teal); }
+.map-popover { position: absolute; top: calc(var(--node-y) + 67px); left: 50%; width: calc(100% - 12px); max-width: 330px; z-index: 3; padding: 22px; background: #fcfcf8; border: 1px solid #cad6c6; border-radius: 7px; box-shadow: 0 12px 32px #253f3512; opacity: 0; visibility: hidden; transform: translate(-50%,8px); transition: opacity .18s, transform .18s, visibility .18s; }
+.map-popover::before { content: ''; position: absolute; width: 9px; height: 9px; left: calc(50% - 5px); top: -6px; background: #fcfcf8; border-left: 1px solid #cad6c6; border-top: 1px solid #cad6c6; transform: rotate(45deg); }
+.map-item.is-open .map-popover, .research-orbit:not(.map-ready) .map-item:focus-within .map-popover, .research-orbit:not(.map-ready) .map-item:hover .map-popover { opacity: 1; visibility: visible; transform: translate(-50%,0); }
+.popover-index { font: 9px var(--mono); color: var(--teal); }
+.map-popover h3 { font: 22px/1.2 var(--serif); margin: 9px 0 12px; }
+.map-popover p { color: var(--muted); font-size: 12px; line-height: 1.75; }
+.map-popover a { margin-top: 14px; font-size: 10px; }
+fieldset.lab-enhancement { border: 0; padding-inline: 0; margin-inline: 0; min-width: 0; }
+fieldset.lab-enhancement:disabled { opacity: .65; }
+.light-controls .lab-range-label, .scatter-controls .lab-range-label { font-size: 12px; font-weight: 500; }
+.lab-enhancement input[type=range] { height: 30px; margin-block: 6px 8px; }
+.lab-enhancement input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; }
+.lab-enhancement input[type=range]::-moz-range-track { height: 4px; border-radius: 4px; }
+.lab-enhancement input[type=range]::-webkit-slider-thumb { width: 18px; height: 18px; margin-top: -7px; }
+.lab-enhancement input[type=range]::-moz-range-thumb { width: 14px; height: 14px; }
+.lab-toolbar .lab-button { min-height: 42px; }
+#interests { scroll-margin-top: 120px; }
+@media (max-width: 1100px) {
+  .map-popover { padding: 18px; }
+  .map-popover h3 { font-size: 21px; }
+  .map-point { font-size: 12px; gap: 5px 10px; padding-inline: 7px; }
+}
+@media (max-width: 760px) {
+  .research-orbit { grid-template-columns: 1fr; min-height: 0; padding: 20px 15px; gap: 20px; }
+  .map-connections { display: none; }
+  .map-item, .map-item:nth-of-type(2), .map-item:nth-of-type(3) { --node-y: 0px; padding-top: 0; }
+  .map-point { width: 100%; margin: 0; font-size: 15px; padding: 12px; }
+  .map-popover { position: relative; left: auto; top: auto; width: 100%; max-width: none; padding: 0 20px; margin: 0; max-height: 0; overflow: hidden; transform: none; border-width: 0; box-shadow: none; }
+  .map-popover::before { display: none; }
+  .map-item.is-open .map-popover, .research-orbit:not(.map-ready) .map-item:focus-within .map-popover, .research-orbit:not(.map-ready) .map-item:hover .map-popover { max-height: 310px; padding: 20px; margin-top: 10px; border-width: 1px; transform: none; }
+}
+@media print {
+  .research-orbit { display: block; min-height: 0; background: none; }
+  .map-connections, .map-point { display: none; }
+  .map-item { padding: 0; }
+  .map-popover { position: static; opacity: 1; visibility: visible; transform: none; max-height: none; width: 100%; max-width: none; padding: 15px; border: 0; box-shadow: none; }
+  .map-popover::before { display: none; }
+}
+/* Keep hover-card transitions inside the map when changing viewport width. */
+.research-orbit { overflow-x: clip; }
+@media (min-width: 761px) and (max-width: 1100px) { .research-orbit { min-height: 440px; } }

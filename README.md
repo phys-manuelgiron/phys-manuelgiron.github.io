@@ -14,8 +14,8 @@ Open <http://localhost:3000>. No installation or build is required; the server u
 
 - `index.html`: biography, research map, projects, publications, education, and contact information. Research content is available without JavaScript.
 - `styles.css`: responsive layout, illustration controls, and print/reduced-motion styles.
-- `script.js`: light-field interaction, research-map tabs, scattering animation, and citation copying.
-- `physics.js`: deterministic wave-field and stochastic ray-transport calculations.
+- `script.js`: light-field interaction, research-map hover cards, scattering animation, and citation copying.
+- `physics.js`: deterministic wave-field and geometric ray–particle collision calculations.
 - `cv.html` / `cv.css`: the web and print versions of the CV.
 - `public/Manuel-Giron-CV.pdf`: downloadable CV, generated from `cv.html` using Chrome print-to-PDF with A4 page size, CSS margins, and no browser headers/footers. Regenerate after editing the CV.
 - `public/light-field.svg` / `public/scattering.svg`: static illustration fallbacks.
@@ -37,13 +37,19 @@ Drag a source or focus it and use arrow keys to reposition it. Play/pause, reset
 
 ### Scattering experiment
 
-A pulse follows 48 rays through a rectangular sample. Free-flight lengths follow an exponential distribution with mean `1600/density`, and each scattering event draws an isotropic direction in two dimensions. Zero density gives straight transmission. A seeded random generator makes a sample reproducible until **New sample** is selected; changing density uses the same seed. Background dots indicate relative density rather than individual collision targets.
+48 rays travel through visible, non-overlapping circular particles. The density slider changes particle count (up to 55), and the radius slider changes particle size (4–13 illustrative units). Geometry is seeded; **New sample** changes the seed. Each path follows the nearest ray–circle intersection, then reflects about the surface normal. Collision flashes occur at those exact points. The counters report right, left, and top/bottom exits. A 192-collision guard leaves any unresolved rays classified as inside.
 
-Counts distinguish rays leaving the right, left, and top/bottom boundaries. Animation advances along cumulative path distance at an illustrative speed. This is a scattering-only transport model: it does not simulate interference, optical gain, random-laser thresholds, or measured timing. A 512-event guard bounds computation; any ray that reaches the guard must remain identified as inside/unresolved rather than counted as an exit.
+Pulses repeat while the scene is visible, with controls for replay and pause. Sliders regenerate the sample and immediately show new paths. This geometric reflection model explains visible cause and effect; it is not a quantitative model of biological particle scattering, interference, optical gain, or measured timing.
 
-### Motion and access
+### Research map
 
-Both illustrations stop requesting animation frames when offscreen or in a hidden tab. Reduced-motion mode starts the field paused and shows scattering outcomes immediately. Native buttons, sliders, and keyboard-operable map tabs provide equivalent access without dragging. No-JavaScript and unavailable-canvas fallbacks remain visible; all three map descriptions are readable without JavaScript.
+Three spaced points sit on a dotted grid. Hovering, focusing, or tapping a point reveals its own card and section link. Escape or a click outside dismisses it. Mobile cards expand beneath their point. Closed cards are inert, so keyboard navigation does not enter invisible links. Without JavaScript, CSS hover/focus still reveals the cards.
+
+### Motion, previews, and access
+
+The scripts are ordered, deferred classic scripts, with the model exposed as `globalThis.PortfolioPhysics`. They work both over HTTP and when `index.html` is opened directly as a local file. Versioned script/style URLs prevent stale assets from mixing between deployments. Controls are visible from the initial HTML and disabled only until their illustration initializes; missing JavaScript no longer makes all sliders disappear.
+
+Both illustrations stop requesting frames offscreen and in hidden tabs. Reduced motion starts the field paused and shows complete scattering paths immediately. The field's time slider, wavelength control, source toggle, click-to-place, and keyboard/drag source movement work while paused. Static SVG fallbacks remain available without canvas. The optional web fonts have system/Georgia fallbacks.
 
 ## Hosting
 
@@ -53,4 +59,4 @@ Canonical repository: `phys-manuelgiron/phys-manuelgiron.github.io`. GitHub redi
 
 ## Verification
 
-Run the model checks with `node --test tests/physics.test.mjs`. Check JavaScript syntax with `node --check script.js` and `node --check physics.js`. Verify conservation of simulated ray counts, straight transmission at zero density, deterministic seeds, and finite wave fields. Preview desktop/mobile widths, keyboard and touch interaction, tab selection, source movement, pause/resume, density resets, reduced motion, no-JavaScript rendering, citation copying, and CV downloads. Optional external fonts have system/Georgia fallbacks.
+Run the model checks with `node --test tests/physics.test.mjs`. Check JavaScript syntax with `node --check script.js` and `node --check physics.js`. Verify conservation of simulated ray counts, straight transmission at zero density, exact particle-surface collisions/reflection, deterministic seeds, and finite wave fields. Preview desktop/mobile widths, keyboard and touch interaction, hover-card links and dismissal, source movement, pause/resume, density resets, reduced motion, no-JavaScript rendering, citation copying, and CV downloads. Optional external fonts have system/Georgia fallbacks.

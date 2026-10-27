@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SAMPLE, scatteringBatch, scatteringCounts, lightBasis } from '../physics.js';
+import '../physics.js';
+const { SAMPLE, scatteringBatch, scatteringCounts, lightBasis, makeScatterers } = globalThis.PortfolioPhysics;
 
 test('an empty sample transmits the complete pulse without scattering', () => {
   const paths = scatteringBatch(0, 123);
@@ -40,14 +41,30 @@ test('rays reach the reported boundary and counts conserve the pulse', () => {
   }
 });
 
-test('the unscattered fraction follows exponential free-flight survival', () => {
-  let unscattered = 0;
-  const ensembles = 300;
-  for (let seed = 0; seed < ensembles; seed += 1) {
-    unscattered += scatteringBatch(10, seed).filter(path => path.points.length === 3 && path.exit === 'forward').length;
+test('every change of direction is a reflection at a visible particle', () => {
+  let collisions = 0;
+  for (const radius of [4, 8, 13]) for (const density of [20, 60, 100]) {
+    const particles = makeScatterers(density, 123, radius);
+    for (const path of scatteringBatch(density, 123, 48, radius)) {
+      for (let i = 2; i < path.points.length - 1; i += 1) {
+        const point = path.points[i];
+        assert.notEqual(point.particleId, undefined);
+        const particle = particles[point.particleId];
+        assert(Math.abs(Math.hypot(point.x - particle.x, point.y - particle.y) - particle.radius) < 1e-6);
+        const previous = path.points[i - 1];
+        const next = path.points[i + 1];
+        const before = Math.hypot(point.x - previous.x, point.y - previous.y);
+        const after = Math.hypot(next.x - point.x, next.y - point.y);
+        const incoming = [(point.x - previous.x) / before, (point.y - previous.y) / before];
+        const outgoing = [(next.x - point.x) / after, (next.y - point.y) / after];
+        const normal = [(point.x - particle.x) / radius, (point.y - particle.y) / radius];
+        const dot = incoming[0] * normal[0] + incoming[1] * normal[1];
+        for (let axis = 0; axis < 2; axis += 1) assert(Math.abs(outgoing[axis] - (incoming[axis] - 2 * dot * normal[axis])) < 1e-6);
+        collisions += 1;
+      }
+    }
   }
-  const expected = Math.exp(-(SAMPLE.right - SAMPLE.left) / 160);
-  assert(Math.abs(unscattered / (ensembles * 48) - expected) < 0.015);
+  assert(collisions > 50);
 });
 
 test('a sample is reproducible and new seeds change its paths', () => {

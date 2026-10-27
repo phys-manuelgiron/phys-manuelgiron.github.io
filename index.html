@@ -10,8 +10,9 @@
   <meta property="og:description" content="Experimental photonics, numerical modeling, and a curiosity for fundamental physics. Explore research, publications, and experience.">
   <meta property="og:type" content="website">
   <link rel="icon" href="public/monogram.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="script.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20261027b">
+  <script src="physics.js?v=20261027b" defer></script>
+  <script src="script.js?v=20261027b" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -42,27 +43,34 @@
           </div>
         </div>
         <div class="field-key" aria-hidden="true">Field amplitude <span>−</span><i></i><span>+</span></div>
-        <div class="light-controls lab-enhancement" hidden>
+        <fieldset class="light-controls lab-enhancement" disabled aria-label="Light field controls">
           <div class="lab-toolbar"><button id="light-play" class="lab-button" type="button" aria-pressed="true">Pause</button><label class="source-toggle"><input id="two-sources" type="checkbox" checked> Two sources</label><button id="light-reset" class="lab-button subtle" type="button">Reset</button></div>
-          <label class="lab-range-label" for="wavelength">Wavelength <span>shorter ↔ longer</span></label><input id="wavelength" type="range" min="24" max="80" step="1" value="48" aria-label="Wavelength in illustrative units">
-          <p class="lab-hint">Drag a source, or focus it and use the arrow keys.</p>
-        </div>
+          <label class="lab-range-label" for="wavelength">Wavelength <output id="wavelength-value" for="wavelength">48</output></label><input id="wavelength" type="range" min="24" max="80" step="1" value="48" aria-label="Wavelength in illustrative units">
+          <label class="lab-range-label" for="light-phase">Time <span>scrub the waves</span></label><input id="light-phase" type="range" min="0" max="100" step="1" value="0" aria-label="Wave phase over one cycle">
+          <p class="lab-hint" id="light-status">Enable JavaScript to use the controls.</p>
+        </fieldset>
         <figcaption id="field-caption"><span class="figure-caption-title">Two sources, one interference pattern.</span>The waves add together. Moving a source changes where they reinforce or cancel each other.</figcaption>
         <details class="model-details"><summary>About this illustration <span aria-hidden="true">+</span></summary><p>A simplified two-dimensional scalar wave field with coherent sources, a fixed propagation speed, and a regularized distance-dependent amplitude. Wavelength and positions use illustrative units. It shows wave superposition, rather than a full electromagnetic simulation or measured data.</p></details>
+        <noscript><p class="lab-hint">Enable JavaScript to move the sources and use the sliders.</p></noscript>
       </figure>
     </section>
-    <aside class="opportunity-strip container" aria-label="Opportunities sought"><span class="opportunity-label"><span class="status-dot" aria-hidden="true"></span> Research & industry</span><p>Summer research stays <span aria-hidden="true">/</span> Scientific computing & instrumentation</p><a href="#contact" aria-label="Discuss a research or industry opportunity">Get in touch <span aria-hidden="true">↗</span></a></aside>
+    <aside class="opportunity-strip container" aria-label="Opportunities sought"><span class="opportunity-label"><span class="status-dot" aria-hidden="true"></span> Research & industry</span><p>Summer research programs <span aria-hidden="true">/</span> Scientific computing & instrumentation</p><a href="#contact" aria-label="Discuss a research or industry opportunity">Get in touch <span aria-hidden="true">↗</span></a></aside>
     <section class="container research-map" id="research-map" aria-labelledby="map-title">
-      <div class="map-heading"><div><p class="eyebrow">01 / Research map</p><h2 id="map-title">How the work <em>connects.</em></h2></div><p>Select an area to see the work behind it.</p></div>
-      <div class="map-track" role="tablist" aria-label="Research areas" hidden>
-        <button class="map-node" id="map-experiment" role="tab" aria-selected="true" aria-controls="panel-experiment" tabindex="0"><span class="node-symbol" aria-hidden="true">01</span><span>Experiment</span><span class="node-caption">Measure a physical system</span></button>
-        <button class="map-node" id="map-computation" role="tab" aria-selected="false" aria-controls="panel-computation" tabindex="-1"><span class="node-symbol" aria-hidden="true">02</span><span>Computation</span><span class="node-caption">Analyze and model it</span></button>
-        <button class="map-node" id="map-theory" role="tab" aria-selected="false" aria-controls="panel-theory" tabindex="-1"><span class="node-symbol" aria-hidden="true">03</span><span>Fundamental questions</span><span class="node-caption">Where I want to go next</span></button>
-      </div>
-      <div class="map-panels">
-        <div class="map-panel" id="panel-experiment"><div><p class="eyebrow">Current research</p><h3>Experimental photonics</h3><p>I prepare scattering samples, collect emission spectra, and connect instruments for automated measurements. These experiments are where most of my research experience comes from.</p></div><a class="text-link" href="#photonics">See the photonics work <span aria-hidden="true">↘</span></a></div>
-        <div class="map-panel" id="panel-computation"><div><p class="eyebrow">Analysis & modeling</p><h3>Working between data and models</h3><p>I use Python to fit spectral peaks and compare measurements. My modeling work includes photonic glazing, a heat-equation solver, and lunar logistics.</p></div><a class="text-link" href="#modeling">See the modeling projects <span aria-hidden="true">↘</span></a></div>
-        <div class="map-panel" id="panel-theory"><div><p class="eyebrow">Research interests</p><h3>High energy physics & quantum field theory</h3><p>I want to study the particles and fields behind physical phenomena. My current preparation is in quantum mechanics, experimental analysis, and numerical methods; I’m looking for a summer research stay to build on that foundation.</p></div><a class="text-link" href="#about">More about my background <span aria-hidden="true">↘</span></a></div>
+      <div class="map-heading"><div><p class="eyebrow">01 / Research map</p><h2 id="map-title">How the work <em>connects.</em></h2></div><p>Hover over a point, or tap it, to explore.</p></div>
+      <div class="research-orbit" aria-label="Three areas of research">
+        <svg class="map-connections" viewBox="0 0 1000 330" preserveAspectRatio="none" aria-hidden="true"><path d="M160 90 Q360 10 490 55 T830 110"/></svg>
+        <div class="map-item">
+          <button class="map-point" id="map-experiment" type="button" aria-expanded="false" aria-controls="panel-experiment"><span class="map-dot" aria-hidden="true"></span><span>Experiment</span><small>Current research</small></button>
+          <div class="map-popover" id="panel-experiment"><span class="popover-index">01</span><h3>Experimental photonics</h3><p>I prepare scattering samples, measure emission spectra, and automate the instruments used in our experiments.</p><a class="text-link" href="#photonics">See the photonics work <span aria-hidden="true">↘</span></a></div>
+        </div>
+        <div class="map-item">
+          <button class="map-point" id="map-computation" type="button" aria-expanded="false" aria-controls="panel-computation"><span class="map-dot" aria-hidden="true"></span><span>Computation</span><small>Analysis & modeling</small></button>
+          <div class="map-popover" id="panel-computation"><span class="popover-index">02</span><h3>Data and numerical models</h3><p>I fit spectral peaks in Python and work on optical models, finite-element methods, and sensitivity analysis.</p><a class="text-link" href="#modeling">See the modeling projects <span aria-hidden="true">↘</span></a></div>
+        </div>
+        <div class="map-item">
+          <button class="map-point" id="map-theory" type="button" aria-expanded="false" aria-controls="panel-theory"><span class="map-dot" aria-hidden="true"></span><span>Fundamental questions</span><small>Research interests</small></button>
+          <div class="map-popover" id="panel-theory"><span class="popover-index">03</span><h3>High energy physics & QFT</h3><p>I’m interested in particles and fields, and in summer research programs where I can build on my experimental and computational background.</p><a class="text-link" href="#interests">Read about my interests <span aria-hidden="true">↘</span></a></div>
+        </div>
       </div>
     </section>
     <section class="section container" id="research" aria-labelledby="research-title">
@@ -74,14 +82,15 @@
             <img class="lab-fallback" src="public/scattering.svg" alt="A beam enters a rectangular sample, scatters along several paths, and reaches a detector on the right">
             <canvas id="scatter-canvas" width="600" height="360" role="img" aria-label="Light paths from a source through a scattering sample to a detector" hidden></canvas>
           </div>
-          <div class="scatter-controls lab-enhancement" hidden>
+          <fieldset class="scatter-controls lab-enhancement" disabled aria-label="Scattering controls">
             <div class="lab-toolbar"><button id="scatter-launch" class="lab-button" type="button">Launch pulse <span aria-hidden="true">→</span></button><button id="scatter-pause" class="lab-button subtle" type="button" disabled aria-pressed="false">Pause</button><button id="scatter-new" class="lab-button subtle" type="button">New sample</button></div>
             <label class="lab-range-label" for="density">Scatterer density <output id="density-value" for="density">40</output></label><input id="density" type="range" min="0" max="100" step="5" value="40" aria-label="Scatterer density on a relative scale from zero to one hundred">
             <dl class="scatter-results"><div><dt>Forward</dt><dd id="count-forward">—</dd></div><div><dt>Back</dt><dd id="count-back">—</dd></div><div><dt>Side exit</dt><dd id="count-side">—</dd></div></dl>
-            <p class="scatter-status" id="scatter-status" role="status">Example paths. Launch a pulse to follow 48 rays.</p>
-          </div>
-          <figcaption id="scatter-caption">Light changes direction as it passes through the sample. Change the density to compare paths.</figcaption>
-          <details class="model-details"><summary>What this model shows <span aria-hidden="true">+</span></summary><p>This two-dimensional ray-transport model draws random distances between scattering events and random outgoing directions. Counts show where rays leave the sample. The model does not include interference or optical gain. Random lasing, which I study in the lab, also depends on gain and feedback. Positions, density, and animation timing are illustrative.</p></details>
+            <label class="lab-range-label" for="particle-size">Particle radius <output id="particle-size-value" for="particle-size">8</output></label><input id="particle-size" type="range" min="4" max="13" step="1" value="8" aria-label="Particle radius in illustrative units">
+            <p class="scatter-status" id="scatter-status" role="status">Enable JavaScript to use the controls.</p>
+          </fieldset>
+          <figcaption id="scatter-caption">Each turn happens when a ray hits a particle. Change the density or particle size, then launch a pulse.</figcaption>
+          <details class="model-details"><summary>What this model shows <span aria-hidden="true">+</span></summary><p>Rays travel in straight lines and reflect when they hit the visible circular particles. A small flash marks each collision. Counts show where rays leave the sample. This geometric model illustrates scattering; it does not simulate wave interference, optical gain, or a real particle’s scattering response. The dimensions and timing are illustrative.</p></details>
         </figure>
         <div class="research-feature-copy"><p class="work-meta">Experimental photonics <span>May 2026 — present</span></p><h3>Random lasing in<br>biological media.</h3><p>I investigate random lasing and optical emission in biological scattering media at Florida Polytechnic University, including seashell-derived particles in Rhodamine B–glycerol.</p><p class="contribution"><strong>My contribution</strong> Sample preparation, pulsed-laser experiments, and Python workflows for peak fitting, linewidth analysis, and spectral comparisons. I also connect spectrometers, energy meters, motorized stages, and Arduino controls for automated measurements.</p><ul class="tags" aria-label="Methods"><li>Spectroscopy</li><li>Python</li><li>Data acquisition</li></ul><a class="text-link" href="#publications">Related research output <span aria-hidden="true">↗</span></a></div>
       </article>
@@ -100,7 +109,7 @@
       </ol>
     </div></section>
     <section class="section container about-section" id="about" aria-labelledby="about-title">
-      <div class="about-copy"><p class="eyebrow">04 / Background</p><h2 id="about-title">About <em>me.</em></h2><p class="about-lede">I study physics at Florida Polytechnic University, with a concentration in quantum mechanics.</p><p>My experience so far is in optics and photonics: preparing samples, collecting spectra, building analysis workflows, and testing numerical models. I’m especially interested in carrying those experimental and computational skills into high energy physics, while deepening my understanding of quantum field theory.</p><p>I’m interested in summer research stays and industry roles involving scientific computing, instrumentation, or experimental analysis.</p><div class="personal-note"><span aria-hidden="true">↳</span><p>Beyond the lab, I’ve taught SAT students and helped found Florida Poly’s Phi Sigma Pi chapter, where I serve as vice president. I speak Spanish and English, and I’m beginning to learn Japanese.</p></div><a class="text-link" href="cv.html">Read the full CV <span aria-hidden="true">↗</span></a></div>
+      <div class="about-copy"><p class="eyebrow">04 / Background</p><h2 id="about-title">About <em>me.</em></h2><p class="about-lede">I study physics at Florida Polytechnic University, with a concentration in quantum mechanics.</p><p id="interests">My experience so far is in optics and photonics: preparing samples, collecting spectra, building analysis workflows, and testing numerical models. I’m especially interested in carrying those experimental and computational skills into high energy physics, while deepening my understanding of quantum field theory.</p><p>I’m interested in summer research programs and industry roles involving scientific computing, instrumentation, or experimental analysis.</p><div class="personal-note"><span aria-hidden="true">↳</span><p>Beyond the lab, I’ve taught SAT students and helped found Florida Poly’s Phi Sigma Pi chapter, where I serve as vice president. I speak Spanish and English, and I’m beginning to learn Japanese.</p></div><a class="text-link" href="cv.html">Read the full CV <span aria-hidden="true">↗</span></a></div>
       <div class="about-details"><div class="education"><p class="eyebrow">Education</p><h3>Florida Polytechnic University</h3><p>B.S. Physics · Quantum Mechanics concentration</p><div class="education-meta"><span>2025 — expected 2028</span><span>3.85 / 4.00 GPA</span></div><p class="honor">Provost Scholarship</p><h3>Miami Dade College</h3><p>Associate in Arts</p><div class="education-meta"><span>2023 — 2025</span><span>4.00 / 4.00 GPA</span></div><p class="honor">Summa Cum Laude · President’s List</p></div><div class="toolkit"><p class="eyebrow">Tools I work with</p><dl><div><dt>Computation</dt><dd>Python · NumPy · SciPy · Matplotlib · MATLAB · C</dd></div><div><dt>Experiment</dt><dd>Optical spectroscopy · Pulsed lasers · LabVIEW · Arduino · Motion control</dd></div><div><dt>Methods</dt><dd>Curve fitting · Spectral processing · Transfer matrices · Numerical analysis</dd></div><div><dt>Communication</dt><dd>LaTeX · Research figures · Technical documentation</dd></div></dl></div></div>
     </section>
     <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-inner"><div><p class="eyebrow">05 / Contact</p><h2 id="contact-title">Get in <em>touch.</em></h2><p>You can email me about summer research, scientific computing, or instrumentation roles.</p><a class="contact-email" href="mailto:gironmphys@gmail.com">gironmphys@gmail.com <span aria-hidden="true">↗</span></a></div><div class="contact-links"><a href="public/Manuel-Giron-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a><a href="https://www.linkedin.com/in/manuelgiron0059" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://github.com/phys-manuelgiron" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><span class="location">Based in Lakeland, Florida</span></div></div></section>

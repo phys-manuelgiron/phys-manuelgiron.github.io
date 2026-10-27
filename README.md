@@ -37,7 +37,7 @@ The initial SVG contains the same computed packet at `m = 1.2` as a fallback. If
 
 Serve the repository root as static files. For GitHub Pages, use **Settings → Pages → Deploy from a branch**, selecting `main` and `/ (root)`. No `gh-pages` package, build directory, or framework is required. The local deployment scripts that predate this redesign are not needed for this workflow.
 
-Use the URL GitHub Pages reports; the configured Git remote currently names `phys-manuelgiron/pays-manuelgiron.github.io`, so do not assume that pushing automatically publishes at the root user-site URL. Relative asset links also support a project-site path.
+The canonical GitHub repository is `phys-manuelgiron/phys-manuelgiron.github.io`; GitHub redirects the former `pays-manuelgiron.github.io` repository address to it. The expected user-site address is <https://phys-manuelgiron.github.io/> when Pages is enabled. Relative asset links also support a project-site path.
 
 ## Verification
 

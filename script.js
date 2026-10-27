@@ -97,6 +97,12 @@ function setupLightField() {
   const wavelength = document.querySelector('#wavelength');
   const twoSources = document.querySelector('#two-sources');
   const play = document.querySelector('#light-play');
+  function readPalette() {
+    const style = getComputedStyle(document.documentElement);
+    const rgb = name => style.getPropertyValue(name).trim().replace('#', '').match(/../g).map(value => parseInt(value, 16));
+    return { background: rgb('--field-bg'), positive: rgb('--field-positive'), negative: rgb('--field-negative') };
+  }
+  let palette = readPalette();
   let basis;
   let phaseOffset = 0;
   let dirty = true;
@@ -111,14 +117,15 @@ function setupLightField() {
     for (let i = 0; i < basis.cosine.length; i += 1) {
       const amplitude = basis.cosine[i] * cosTime + basis.sine[i] * sinTime;
       const mix = Math.min(0.78, Math.abs(amplitude) * 0.95);
-      const color = amplitude > 0 ? [41, 102, 83] : [169, 112, 75];
-      const background = [247, 246, 242];
+      const color = amplitude > 0 ? palette.positive : palette.negative;
+      const background = palette.background;
       for (let channel = 0; channel < 3; channel += 1) pixels.data[i * 4 + channel] = background[channel] + (color[channel] - background[channel]) * mix;
       pixels.data[i * 4 + 3] = 255;
     }
     rasterContext.putImageData(pixels, 0, 0);
     ctx.drawImage(raster, 0, 0, canvas.width, canvas.height);
   });
+  window.addEventListener('themechange', () => { palette = readPalette();clock.draw(); });
   function updateSources() {
     for (const [index, button] of buttons.entries()) {
       button.style.left = `${sources[index].x * 100}%`;

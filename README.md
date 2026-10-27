@@ -14,6 +14,7 @@ Open <http://localhost:3000>. No installation or build is required; the server u
 
 - `index.html`: biography, research map, projects, publications, education, and contact information. Research content is available without JavaScript.
 - `styles.css`: responsive layout, illustration controls, and print/reduced-motion styles.
+- `theme.js` / `theme.css`: early theme selection, the day/night toggle, saved preference, and shared colors for the portfolio and web CV.
 - `script.js`: light-field interaction, research-map hover cards, scattering animation, and citation copying.
 - `physics.js`: deterministic wave-field and geometric ray–particle collision calculations.
 - `cv.html` / `cv.css`: the web and print versions of the CV.
@@ -50,6 +51,10 @@ Three spaced points sit on a dotted grid. Hovering, focusing, or tapping a point
 The scripts are ordered, deferred classic scripts, with the model exposed as `globalThis.PortfolioPhysics`. They work both over HTTP and when `index.html` is opened directly as a local file. Versioned script/style URLs prevent stale assets from mixing between deployments. Controls are visible from the initial HTML and disabled only until their illustration initializes; missing JavaScript no longer makes all sliders disappear.
 
 Both illustrations stop requesting frames offscreen and in hidden tabs. Reduced motion starts the field paused and shows complete scattering paths immediately. The field's time slider, wavelength control, source toggle, click-to-place, and keyboard/drag source movement work while paused. Static SVG fallbacks remain available without canvas. The optional web fonts have system/Georgia fallbacks.
+
+## Day and night mode
+
+The header toggle switches between day and night colors. With no saved choice, the site follows the OS color preference and responds to system changes. A manual selection is stored locally and shared with the web CV; switching still works if storage is unavailable. The light-field canvas and its static fallback use the active palette. CV printing uses light colors regardless of the selected screen theme.
 
 ## Hosting
 

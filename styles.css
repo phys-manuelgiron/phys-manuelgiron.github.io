@@ -47,7 +47,7 @@ button,a,input,summary {
 }
 
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible {
-  outline: 3px solid #aa6a36;
+  outline: 3px solid var(--focus);
   outline-offset: 5px;
 }
 
@@ -238,11 +238,11 @@ h3 {
 
 .primary {
   background: var(--teal);
-  color: #fff;
+  color: var(--accent-ink);
 }
 
 .primary:hover {
-  background: #1e503f;
+  background: var(--button-hover);
   transform: translateY(-2px);
 }
 
@@ -361,12 +361,12 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-runnable-track {
   height: 2px;
-  background: #c8d2c5;
+  background: var(--line);
 }
 
 input[type=range]::-moz-range-track {
   height: 2px;
-  background: #c8d2c5;
+  background: var(--line);
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -522,7 +522,7 @@ figcaption {
   display: grid;
   grid-template-columns: .95fr 1.05fr;
   border: 1px solid var(--line);
-  background: #f9f9f5;
+  background: var(--surface);
 }
 
 .research-art {
@@ -734,14 +734,14 @@ figcaption {
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid #cfd6ca;
+  border-top: 1px solid var(--line);
 }
 
 .publication-list>li {
   display: grid;
   grid-template-columns: 34px 1fr 58px;
   gap: 23px;
-  border-bottom: 1px solid #cfd6ca;
+  border-bottom: 1px solid var(--line);
   padding: 28px 0;
 }
 
@@ -768,7 +768,7 @@ figcaption {
 }
 
 .publication-status.in-progress {
-  color: #85663b;
+  color: var(--muted);
 }
 
 .publication-list h3 {
@@ -1368,11 +1368,11 @@ figcaption {
 .light-stage canvas, .scatter-stage canvas, .lab-fallback { display: block; width: 100%; height: 100%; object-fit: contain; }
 .ready > .lab-fallback { display: none; }
 .source-controls { position: absolute; inset: 0; pointer-events: none; }
-.light-source { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #29665366; border-radius: 50%; background: #f7f6f2d9; color: var(--teal); font: 12px var(--mono); cursor: grab; touch-action: none; pointer-events: auto; }
+.light-source { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--teal); border-radius: 50%; background: var(--surface); color: var(--teal); font: 12px var(--mono); cursor: grab; touch-action: none; pointer-events: auto; }
 .light-source:active { cursor: grabbing; background: var(--paper); }
 .light-controls { padding-top: 15px; }
 .lab-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.lab-button { border: 1px solid var(--teal); background: var(--teal); color: #fff; padding: 8px 13px; min-height: 38px; font-size: 11px; line-height: 1.4; border-radius: 2px; }
+.lab-button { border: 1px solid var(--teal); background: var(--teal); color: var(--accent-ink); padding: 8px 13px; min-height: 38px; font-size: 11px; line-height: 1.4; border-radius: 2px; }
 .lab-button:hover { filter: brightness(.93); }
 .lab-button.subtle { background: transparent; color: var(--teal); border-color: var(--line); }
 .lab-button:disabled { cursor: default; opacity: .45; filter: none; }
@@ -1473,7 +1473,7 @@ figcaption {
 .research-feature .scatter-lab .model-details p { color: #c0d4be; font-size: 10px; line-height: 1.8; }
 
 /* Spaced research points, with a separate card at each point. */
-.research-orbit { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; min-height: 390px; border-block: 1px solid var(--line); background-image: radial-gradient(#aebbad7d .8px, transparent .8px); background-size: 24px 24px; }
+.research-orbit { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; min-height: 390px; border-block: 1px solid var(--line); background-image: radial-gradient(var(--map-grid) .8px, transparent .8px); background-size: 24px 24px; }
 .map-connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .map-connections path { fill: none; stroke: #a9baa8; stroke-width: 1; stroke-dasharray: 3 7; }
 .map-item { --node-y: 75px; position: relative; padding-top: var(--node-y); min-width: 0; }
@@ -1482,9 +1482,9 @@ figcaption {
 .map-point { position: relative; display: grid; grid-template-columns: 14px 1fr; align-items: center; gap: 4px 16px; text-align: left; width: fit-content; max-width: 100%; margin-inline: auto; padding: 10px 14px; background: var(--paper); border: 0; color: var(--ink); font-size: 14px; }
 .map-dot { grid-row: span 2; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 5px var(--paper),0 0 0 6px #a7b8a4; transition: box-shadow .2s; }
 .map-point small { font: 9px var(--mono); color: var(--muted); }
-.map-item.is-open .map-dot { box-shadow: 0 0 0 6px #e1e9dc,0 0 0 7px var(--teal); }
-.map-popover { position: absolute; top: calc(var(--node-y) + 67px); left: 50%; width: calc(100% - 12px); max-width: 330px; z-index: 3; padding: 22px; background: #fcfcf8; border: 1px solid #cad6c6; border-radius: 7px; box-shadow: 0 12px 32px #253f3512; opacity: 0; visibility: hidden; transform: translate(-50%,8px); transition: opacity .18s, transform .18s, visibility .18s; }
-.map-popover::before { content: ''; position: absolute; width: 9px; height: 9px; left: calc(50% - 5px); top: -6px; background: #fcfcf8; border-left: 1px solid #cad6c6; border-top: 1px solid #cad6c6; transform: rotate(45deg); }
+.map-item.is-open .map-dot { box-shadow: 0 0 0 6px var(--soft),0 0 0 7px var(--teal); }
+.map-popover { position: absolute; top: calc(var(--node-y) + 67px); left: 50%; width: calc(100% - 12px); max-width: 330px; z-index: 3; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 12px 32px #253f3512; opacity: 0; visibility: hidden; transform: translate(-50%,8px); transition: opacity .18s, transform .18s, visibility .18s; }
+.map-popover::before { content: ''; position: absolute; width: 9px; height: 9px; left: calc(50% - 5px); top: -6px; background: var(--surface); border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
 .map-item.is-open .map-popover, .research-orbit:not(.map-ready) .map-item:focus-within .map-popover, .research-orbit:not(.map-ready) .map-item:hover .map-popover { opacity: 1; visibility: visible; transform: translate(-50%,0); }
 .popover-index { font: 9px var(--mono); color: var(--teal); }
 .map-popover h3 { font: 22px/1.2 var(--serif); margin: 9px 0 12px; }
@@ -1524,3 +1524,13 @@ fieldset.lab-enhancement:disabled { opacity: .65; }
 /* Keep hover-card transitions inside the map when changing viewport width. */
 .research-orbit { overflow-x: clip; }
 @media (min-width: 761px) and (max-width: 1100px) { .research-orbit { min-height: 440px; } }
+
+/* Theme-aware illustration and header controls. */
+.light-stage .lab-fallback { content: var(--field-fallback); }
+.navigation { position: relative; }
+@media (max-width: 1100px) { .nav-links { gap: 18px; } }
+@media (max-width: 760px) {
+  .nav-links { gap: 12px; }
+  .navigation .theme-toggle { position: absolute; right: 0; top: 12px; }
+}
+[data-theme="dark"] ::selection { background: #365b47; color: #f0f7ed; }

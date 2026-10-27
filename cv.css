@@ -1,4 +1,5 @@
 :root {
+  --paper: #f7f6f2;
   --ink: #242f2b;
   --teal: #296653;
   --muted: #626b65;
@@ -15,7 +16,7 @@ html {
 
 body {
   margin: 0;
-  background: #f7f6f2;
+  background: var(--paper, #f7f6f2);
   color: var(--ink);
   font: 14px/1.65 Arial,sans-serif;
 }
@@ -38,7 +39,7 @@ body {
   max-width: 900px;
   margin: 0 auto 50px;
   padding: 50px 60px;
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--line);
 }
 
@@ -53,7 +54,7 @@ a {
 }
 
 a:focus-visible {
-  outline: 3px solid #aa6a36;
+  outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 
@@ -270,4 +271,9 @@ li {
   .cv-header {
     break-inside: avoid;
   }
+}
+
+.cv-nav { align-items: center; flex-wrap: wrap; gap: 14px; }
+@media print {
+  .cv, body { background: white; }
 }

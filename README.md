@@ -1,6 +1,6 @@
 # Manuel Giron · Physics portfolio
 
-A static, accessible research portfolio for industry teams and summer research programs. The visual direction, **From light to fields**, connects experimental photonics and scientific computing with an interest in high energy physics and quantum field theory.
+A static physics portfolio for research groups and industry teams. It presents experimental photonics, scientific computing, and Manuel's interests in high energy physics and quantum field theory.
 
 ## Run locally
 
@@ -10,35 +10,47 @@ npm run dev
 
 Open <http://localhost:3000>. No installation or build is required; the server uses Node.js built-ins.
 
-## Content and files
+## Files and content
 
-- `index.html`: biography, research, publication list, education, and verified contact links. All content is available without JavaScript.
-- `styles.css`: responsive layout, typography, and print/reduced-motion styles.
-- `script.js`: the free-field illustration, citation copying, and navigation enhancement.
+- `index.html`: biography, research map, projects, publications, education, and contact information. Research content is available without JavaScript.
+- `styles.css`: responsive layout, illustration controls, and print/reduced-motion styles.
+- `script.js`: light-field interaction, research-map tabs, scattering animation, and citation copying.
+- `physics.js`: deterministic wave-field and stochastic ray-transport calculations.
 - `cv.html` / `cv.css`: the web and print versions of the CV.
-- `public/Manuel-Giron-CV.pdf`: downloadable CV, generated from `cv.html` using Chrome's print-to-PDF with A4 page size, CSS margins, and no browser headers/footers. Regenerate after editing the CV.
-- `public/monogram.svg`: the site's favicon.
+- `public/Manuel-Giron-CV.pdf`: downloadable CV, generated from `cv.html` using Chrome print-to-PDF with A4 page size, CSS margins, and no browser headers/footers. Regenerate after editing the CV.
+- `public/light-field.svg` / `public/scattering.svg`: static illustration fallbacks.
+- `public/monogram.svg`: favicon.
 
-The original CAD viewer and sample model files are retained in the repository, but are not loaded by the portfolio.
+The original CAD viewer and sample models are retained but not loaded by the portfolio. The source Word résumé remains local and is excluded from Git. The public CV omits the phone number and placeholder URL. The conceptual biosensing cavity is omitted because no project work was completed.
 
-## Updating the portfolio
+## Research accuracy
 
-Edit the static HTML directly. Keep research contributions and publication statuses accurate. The Applied Optics article links to its verified DOI, [10.1364/AO.606352](https://doi.org/10.1364/AO.606352). Optical-glazing metrics are simulation-derived. The avian-feather laser manuscript is in preparation; NanoFlorida is listed as a poster presentation without an invented title.
+Edit the static HTML directly and keep contributions and publication statuses accurate. The Applied Optics article links to its verified DOI, [10.1364/AO.606352](https://doi.org/10.1364/AO.606352). The photonic-glazing metrics are simulation-derived. The avian-feather laser manuscript is in preparation. NanoFlorida is listed as a poster presentation without an invented title. The research map separates completed/current work from HEP/QFT interests.
 
-The source résumé remains a local document and is excluded from version control. The public CV omits the phone number and placeholder portfolio URL, and adds the stated HEP/QFT interests alongside established experience.
+## Illustrations
 
-## Scientific illustration
+### Living light field
 
-The figure is an educational classical Klein–Gordon wave packet in 1+1 dimensions, separate from research data. It sums 81 Gaussian-weighted plane waves using `omega = sqrt(k² + m²)` at fixed `t = 3.2`, central `k = 4`, width `0.85`, and natural units `c = hbar = 1`. The solid trace is the real field; the dashed trace is the magnitude of its complex representation. The mass slider uses native keyboard controls. There is no continuous animation.
+A qualitative two-dimensional scalar field uses one or two coherent point sources. For each source it evaluates `A(r) cos(kr - omega*t)`, with `A(r) = 0.95 / sqrt(1 + r/100)`, `k = 2*pi/wavelength`, and `omega = k * 12` for a fixed illustrative propagation speed. Source amplitudes are normalized by source count. The wavelength slider changes both spatial scale and oscillation rate while keeping propagation speed fixed; these are illustrative rather than calibrated optical units. Warm and green colors show opposite signs of field amplitude, not optical intensity. This regularized model illustrates superposition rather than a full Maxwell solution.
 
-The initial SVG contains the same computed packet at `m = 1.2` as a fallback. If the model changes, update both the generated fallback paths in `index.html` and the JavaScript calculation.
+Drag a source or focus it and use arrow keys to reposition it. Play/pause, reset, wavelength, and a second-source toggle are provided.
+
+### Scattering experiment
+
+A pulse follows 48 rays through a rectangular sample. Free-flight lengths follow an exponential distribution with mean `1600/density`, and each scattering event draws an isotropic direction in two dimensions. Zero density gives straight transmission. A seeded random generator makes a sample reproducible until **New sample** is selected; changing density uses the same seed. Background dots indicate relative density rather than individual collision targets.
+
+Counts distinguish rays leaving the right, left, and top/bottom boundaries. Animation advances along cumulative path distance at an illustrative speed. This is a scattering-only transport model: it does not simulate interference, optical gain, random-laser thresholds, or measured timing. A 512-event guard bounds computation; any ray that reaches the guard must remain identified as inside/unresolved rather than counted as an exit.
+
+### Motion and access
+
+Both illustrations stop requesting animation frames when offscreen or in a hidden tab. Reduced-motion mode starts the field paused and shows scattering outcomes immediately. Native buttons, sliders, and keyboard-operable map tabs provide equivalent access without dragging. No-JavaScript and unavailable-canvas fallbacks remain visible; all three map descriptions are readable without JavaScript.
 
 ## Hosting
 
-Serve the repository root as static files. For GitHub Pages, use **Settings → Pages → Deploy from a branch**, selecting `main` and `/ (root)`. No `gh-pages` package, build directory, or framework is required. The local deployment scripts that predate this redesign are not needed for this workflow.
+Serve the repository root as static files. GitHub Pages uses **Deploy from a branch → main → / (root)**. No `gh-pages` dependency or build directory is required; the local deployment scripts that predate the redesign are not used.
 
-The canonical GitHub repository is `phys-manuelgiron/phys-manuelgiron.github.io`; GitHub redirects the former `pays-manuelgiron.github.io` repository address to it. The expected user-site address is <https://phys-manuelgiron.github.io/> when Pages is enabled. Relative asset links also support a project-site path.
+Canonical repository: `phys-manuelgiron/phys-manuelgiron.github.io`. GitHub redirects its former `pays-manuelgiron.github.io` address. The user-site address is <https://phys-manuelgiron.github.io/>. Relative assets also support a project-site path.
 
 ## Verification
 
-Validate local links and HTML structure, check JavaScript syntax with `node --check script.js`, and preview desktop and mobile sizes. Verify the slider, native keyboard operation, citation success/failure feedback, anchor navigation, reduced motion, and no-JavaScript readability. External font loading is optional; system and Georgia fallbacks are defined.
+Run the model checks with `node --test tests/physics.test.mjs`. Check JavaScript syntax with `node --check script.js` and `node --check physics.js`. Verify conservation of simulated ray counts, straight transmission at zero density, deterministic seeds, and finite wave fields. Preview desktop/mobile widths, keyboard and touch interaction, tab selection, source movement, pause/resume, density resets, reduced motion, no-JavaScript rendering, citation copying, and CV downloads. Optional external fonts have system/Georgia fallbacks.

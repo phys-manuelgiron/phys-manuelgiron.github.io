@@ -15,6 +15,7 @@ const types = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".ico": "image/x-icon",
+  ".pdf": "application/pdf",
   ".dxf": "application/dxf",
   ".dwg": "application/acad",
   ".glb": "model/gltf-binary",

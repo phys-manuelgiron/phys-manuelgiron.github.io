@@ -13,3 +13,5 @@ __v0_jsx-dev-runtime.ts
 node_modules
 .next/
 .DS_Store
+# Local source resume; publish the curated web/PDF CV instead.
+/Manuel_Giron_Extended_Master_2026.docx

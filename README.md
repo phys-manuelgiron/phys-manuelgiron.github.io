@@ -1,64 +1,44 @@
-# ME-Portfolio-Template
-Portfolio website template for Mechanical, Civil, Aerospace, etc. Engineers
+# Manuel Giron · Physics portfolio
 
-## What is this?
+A static, accessible research portfolio for industry teams and summer research programs. The visual direction, **From light to fields**, connects experimental photonics and scientific computing with an interest in high energy physics and quantum field theory.
 
-This simple portfolio template is designed to showcase your past projects, career history, skill sets, and more.
+## Run locally
 
-View the [Demo](https://lotusey.github.io/ME-Portfolio-Template/).
+```sh
+npm run dev
+```
 
-**This template is free to use, and no attribution is required.** You can fork or download this repository to customize it for your own use.
+Open <http://localhost:3000>. No installation or build is required; the server uses Node.js built-ins.
 
-![screenshot](.\public\ReadMeImages\MEMainScreen.png)
+## Content and files
 
-## Features
+- `index.html`: biography, research, publication list, education, and verified contact links. All content is available without JavaScript.
+- `styles.css`: responsive layout, typography, and print/reduced-motion styles.
+- `script.js`: the free-field illustration, citation copying, and navigation enhancement.
+- `cv.html` / `cv.css`: the web and print versions of the CV.
+- `public/Manuel-Giron-CV.pdf`: downloadable CV, generated from `cv.html` using Chrome's print-to-PDF with A4 page size, CSS margins, and no browser headers/footers. Regenerate after editing the CV.
+- `public/monogram.svg`: the site's favicon.
 
-✅ Open source (free to use, no attribution required)  
-✅ Responsive design & mobile-friendly   
-✅ Highly customizable multi-component layout  
-✅ Built with HTML & CSS  
-✅ Able to display 2D & 3D CAD Models
+The original CAD viewer and sample model files are retained in the repository, but are not loaded by the portfolio.
 
-## Quick Setup
+## Updating the portfolio
 
-1. Set up a GitHub Account:
-    - Visit GitHub: If you don't have an account, go to [GitHub](https://Github.com) and sign up.
-    - Create an Account: Fill out the registration form with your preferred username, email, and password. Since your username will be the start of your web page's handle, try to make your username your name, or something easily read aloud. 
-    - Verify Your Email: Check your email to verify your account
+Edit the static HTML directly. Keep research contributions and publication statuses accurate. The Applied Optics article links to its verified DOI, [10.1364/AO.606352](https://doi.org/10.1364/AO.606352). Optical-glazing metrics are simulation-derived. The avian-feather laser manuscript is in preparation; NanoFlorida is listed as a poster presentation without an invented title.
 
-2. Using the Template:
-    - Navigate to the [ME-Portfolio-Template](https://github.com/Lotusey/ME-Portfolio-Template) Repository.
-    - Click on the "Fork" button on the top right. 
-    ![screenshot](./public/ReadMeImages/forkbutton.png)
-    - Choose the owner (you), name the repository "(username).github.io", and add a description. 
-    ![screenshot](./public/ReadMeImages/fork.png) 
-    - Now the repo should be forked!
+The source résumé remains a local document and is excluded from version control. The public CV omits the phone number and placeholder portfolio URL, and adds the stated HEP/QFT interests alongside established experience.
 
-3. Open VSCode (or your code editor of choice) and clone the repo. 
-    - If not already connected, log in to GitHub via VSCode by clicking on the account icon in the bottom left of the window. 
-    - Once logged in, Click on the "Explorer" tab in the top left > "Clone Repository" > Clone from GitHub > Select "(Username)/(Username).github.io ..."
-    ![screenshot](./public/ReadMeImages/VSCodeClone.png)
-    - Now you should have the repository cloned locally and the workspace open.
+## Scientific illustration
 
-4. Open `script.js` and replace the example information with your own. The page updates from this file; you do not need to edit any other components. 
+The figure is an educational classical Klein–Gordon wave packet in 1+1 dimensions, separate from research data. It sums 81 Gaussian-weighted plane waves using `omega = sqrt(k² + m²)` at fixed `t = 3.2`, central `k = 4`, width `0.85`, and natural units `c = hbar = 1`. The solid trace is the real field; the dashed trace is the magnitude of its complex representation. The mass slider uses native keyboard controls. There is no continuous animation.
 
-The script file contains your name and title, social links, expertise and technologies, experience, projects, and contact-section text. 
+The initial SVG contains the same computed packet at `m = 1.2` as a fallback. If the model changes, update both the generated fallback paths in `index.html` and the JavaScript calculation.
 
-Add your CAD Models to `models/2d/` and `models/3d/`. The CAD Viewer accepts `.dwg` or `.dxf` for 2D modeling and `.glb`, `.stl`, or `.obj`. 
-Then lastly, make sure to add each file to `models/catalog.json` using a path relative to the site root, such as `models/2d/plate-layout.dxf`
+## Hosting
 
-## Deployment
+Serve the repository root as static files. For GitHub Pages, use **Settings → Pages → Deploy from a branch**, selecting `main` and `/ (root)`. No `gh-pages` package, build directory, or framework is required. The local deployment scripts that predate this redesign are not needed for this workflow.
 
-Now we'll host the website via GitHub pages!
-(You can also choose a different preferred service (e.g., [Netlify](https://www.netlify.com/), [Render](https://render.com/), [Heroku](https://www.heroku.com/)) for deployment, but GitHub pages is the easiest for our purposes.) Follow the instructions below for a production deploy.
+Use the URL GitHub Pages reports; the configured Git remote currently names `phys-manuelgiron/pays-manuelgiron.github.io`, so do not assume that pushing automatically publishes at the root user-site URL. Relative asset links also support a project-site path.
 
-1. Ensure project settings in GitHub
-    - Go back to the repository on GitHub
-    - Go to settings > Pages
-    - Then under Build and Deployment and under Branch select 'main' and press Save
-    ![screenshot](./public/ReadMeImages/ghpagedeployment.png)
+## Verification
 
-
-2. **Access Your Deployed App**
-
-    After successfully deploying, you can access your app at `https://yourusername.github.io/your-repo-name`.
+Validate local links and HTML structure, check JavaScript syntax with `node --check script.js`, and preview desktop and mobile sizes. Verify the slider, native keyboard operation, citation success/failure feedback, anchor navigation, reduced motion, and no-JavaScript readability. External font loading is optional; system and Georgia fallbacks are defined.

@@ -1,0 +1,273 @@
+:root {
+  --ink: #242f2b;
+  --teal: #296653;
+  --muted: #626b65;
+  --line: #d8ddd4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 25px;
+}
+
+body {
+  margin: 0;
+  background: #f7f6f2;
+  color: var(--ink);
+  font: 14px/1.65 Arial,sans-serif;
+}
+
+.cv-nav {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  font-size: 12px;
+}
+
+.cv-nav a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.cv {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  padding: 50px 60px;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+h1,h2,h3,p {
+  margin: 0;
+}
+
+a {
+  color: var(--teal);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+a:focus-visible {
+  outline: 3px solid #aa6a36;
+  outline-offset: 4px;
+}
+
+.cv-label {
+  font: 10px monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 15px;
+}
+
+h1 {
+  font: 48px Georgia,serif;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+
+.cv-header>p:not(.cv-label) {
+  font-size: 13px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 18px;
+  margin-top: 16px;
+  font-size: 11px;
+}
+
+.interests {
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+h2 {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  color: var(--teal);
+  padding-bottom: 8px;
+  margin: 30px 0 17px;
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.entry-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.entry-heading>span {
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+article {
+  margin-bottom: 18px;
+}
+
+article>p {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.organization {
+  color: var(--muted);
+}
+
+ul,ol {
+  padding-left: 18px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.publications li {
+  margin-bottom: 12px;
+}
+
+.skills {
+  font-size: 12px;
+}
+
+.skills>div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.skills dt {
+  font-weight: 600;
+}
+
+.skills dd {
+  margin: 0;
+}
+
+@media(max-width:650px) {
+  .cv-nav {
+    padding-inline: 20px;
+  }
+  .cv {
+    margin: 0 12px 25px;
+    padding: 28px 20px;
+  }
+  .entry-heading {
+    display: block;
+  }
+  .entry-heading>span {
+    display: block;
+    margin-top: 3px;
+  }
+  .skills>div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  .contact {
+    flex-direction: column;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 16mm 17mm 17mm;
+}
+
+@media print {
+  body {
+    background: white;
+    font-size: 9pt;
+    line-height: 1.45;
+  }
+  .cv-nav {
+    display: none;
+  }
+  .cv {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+  .cv-label {
+    font-size: 7pt;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 29pt;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+  }
+  .cv-header>p:not(.cv-label) {
+    font-size: 9pt;
+  }
+  .contact {
+    font-size: 8pt;
+    margin-top: 9px;
+    gap: 3px 14px;
+  }
+  .interests {
+    margin-top: 10px;
+  }
+  h2 {
+    font-size: 9pt;
+    margin: 18px 0 10px;
+    padding-bottom: 5px;
+    break-after: avoid;
+  }
+  h3 {
+    font-size: 9pt;
+  }
+  .entry-heading>span {
+    font-size: 7.5pt;
+  }
+  article {
+    margin-bottom: 11px;
+    break-inside: avoid;
+  }
+  article>p,ul,ol,.skills {
+    font-size: 8.5pt;
+  }
+  ul,ol {
+    margin: 5px 0;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .publications li {
+    margin-bottom: 8px;
+    break-inside: avoid;
+  }
+  .skills>div {
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 5px;
+    break-inside: avoid;
+  }
+  a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .cv-header {
+    break-inside: avoid;
+  }
+}

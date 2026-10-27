@@ -1,222 +1,85 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title id="page-title">Portfolio</title>
-    <meta
-      name="description"
-      content="Mechanical engineering portfolio."
-    />
-    <meta name="theme-color" content="#E3350D" />
-    <meta property="og:title" content="Portfolio" />
-    <meta property="og:description" content="Mechanical engineering portfolio." />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23fff' stroke='%2316213A' stroke-width='3'/%3E%3Cpath d='M2 16a14 14 0 0 1 28 0z' fill='%23E3350D' stroke='%2316213A' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23fff' stroke='%2316213A' stroke-width='3'/%3E%3C/svg%3E"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="#top" aria-label="Home">
-          <span class="ball" aria-hidden="true"></span>
-          <span class="brand-text" id="brand-name">Portfolio</span>
-        </a>
-
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="nav-toggle-bar" aria-hidden="true"></span>
-          <span class="nav-toggle-bar" aria-hidden="true"></span>
-        </button>
-
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#skills" data-nav>Skills</a></li>
-          <li><a href="#experience" data-nav>Experience</a></li>
-          <li><a href="#projects" data-nav>Projects</a></li>
-          <li><a href="#cad" data-nav>CAD Lab</a></li>
-          <li><a href="#contact" data-nav class="nav-cta">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main id="main">
-      <section class="hero container" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow reveal" style="--d: 0">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span id="availability">Open to opportunities</span>
-          </p>
-          <h1 class="hero-title reveal" id="hero-title" style="--d: 1">Your Name</h1>
-          <p class="hero-role reveal" style="--d: 2">
-            <span id="profile-discipline">Engineering</span> &middot; <span id="profile-role">Engineer</span>
-          </p>
-          <p class="hero-lede reveal" id="profile-summary" style="--d: 3"></p>
-          <div class="hero-actions reveal" style="--d: 4">
-            <a class="btn btn-primary" href="#projects">View projects</a>
-            <a class="btn btn-ghost" href="#contact">Get in touch</a>
-          </div>
-        </div>
-
-        <div class="dex reveal" style="--d: 2" aria-label="Terminal introduction" role="region">
-          <div class="dex-top" aria-hidden="true">
-            <span class="dex-lens"></span>
-            <span class="dex-led dex-led--red"></span>
-            <span class="dex-led dex-led--yellow"></span>
-            <span class="dex-led dex-led--ink"></span>
-          </div>
-          <div class="dex-screen-frame">
-            <div class="dex-screen">
-              <div class="term-bar" aria-hidden="true">
-                <span id="terminal-home">~/portfolio</span>
-                <span>zsh</span>
-              </div>
-              <pre class="term" id="terminal" aria-live="off"></pre>
-              <noscript>
-                <pre class="term">$ whoami
-your-name
-$ ./catch --all opportunities
-Gotta ship 'em all.</pre>
-              </noscript>
-            </div>
-          </div>
-          <div class="dex-controls" aria-hidden="true">
-            <span class="dex-dpad"></span>
-            <span class="dex-slot"></span>
-            <span class="dex-btns">
-              <span class="dex-btn"></span>
-              <span class="dex-btn"></span>
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="skills" aria-labelledby="skills-title">
-        <div class="container">
-          <div class="section-head">
-            <p class="path">~/skills</p>
-            <h2 class="section-title" id="skills-title">Engineering toolkit</h2>
-            <p class="section-sub" id="skills-subtitle"></p>
-          </div>
-          <div class="skills-grid" id="skills-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="experience" aria-labelledby="experience-title">
-        <div class="container">
-          <div class="section-head">
-            <p class="path">~/experience</p>
-            <h2 class="section-title" id="experience-title">Experience</h2>
-            <p class="section-sub" id="experience-subtitle"></p>
-          </div>
-          <ol class="experience-timeline" id="experience-timeline"></ol>
-        </div>
-      </section>
-
-      <section class="section section--alt" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-          <div class="section-head">
-            <p class="path">~/projects</p>
-            <h2 class="section-title" id="projects-title">Design projects</h2>
-            <p class="section-sub" id="projects-subtitle"></p>
-          </div>
-          <div class="filters" role="group" aria-label="Filter projects by technology" id="filters"></div>
-          <ul class="projects-grid" id="projects-grid"></ul>
-          <p class="empty" id="projects-empty" hidden>No projects match this filter.</p>
-        </div>
-      </section>
-
-      <section class="section section--alt cad-section" id="cad" aria-labelledby="cad-title">
-        <div class="container">
-          <div class="section-head">
-            <p class="path">~/cad-lab</p>
-            <h2 class="section-title" id="cad-title">CAD library</h2>
-            <p class="section-sub">Browse technical drawings and 3D models.</p>
-          </div>
-          <div class="cad-tabs" role="tablist" aria-label="CAD viewer type">
-            <button class="cad-tab" id="cad-tab-2d" type="button" role="tab" aria-selected="true" aria-controls="cad-panel-2d" data-cad-tab="2d">2D drawings</button>
-            <button class="cad-tab" id="cad-tab-3d" type="button" role="tab" aria-selected="false" aria-controls="cad-panel-3d" data-cad-tab="3d" tabindex="-1">3D models</button>
-          </div>
-          <div class="cad-layout">
-            <div class="cad-stage-wrap">
-              <section class="cad-view-panel" id="cad-panel-2d" role="tabpanel" aria-labelledby="cad-tab-2d" tabindex="0">
-                <div class="cad-stage" aria-label="2D technical drawing viewer">
-                  <iframe id="cad-2d-embed" class="cad-embed" title="2D DWG or DXF drawing viewer" loading="lazy" allowfullscreen hidden></iframe>
-                  <div class="cad-view-empty" id="cad-2d-empty">No 2D drawings are in the library yet.</div>
-                  <div class="cad-hud"><span id="cad-2d-name">2D drawing</span><span>DWG / DXF</span></div>
-                </div>
-                <div class="cad-controls"><p class="cad-note" id="cad-2d-status" role="status">Choose a drawing from the library.</p></div>
-              </section>
-              <section class="cad-view-panel" id="cad-panel-3d" role="tabpanel" aria-labelledby="cad-tab-3d" tabindex="0" hidden>
-                <div class="cad-stage" aria-label="Interactive 3D model viewer">
-                  <canvas id="cad-3d-canvas" aria-label="3D model viewport"></canvas>
-                  <div class="cad-view-empty" id="cad-3d-empty">No 3D models are in the library yet.</div>
-                  <div class="cad-hud"><span id="cad-3d-name">3D model</span><span>DRAG TO ORBIT</span></div>
-                </div>
-                <div class="cad-controls">
-                  <button class="btn btn-ghost cad-reset" id="cad-3d-reset" type="button" aria-label="Reset 3D view">Reset view</button>
-                  <p class="cad-note" id="cad-3d-status" role="status">Choose a model from the library.</p>
-                </div>
-              </section>
-            </div>
-            <aside class="cad-library" aria-label="Model library">
-              <div class="cad-library-section" aria-labelledby="cad-2d-library-title">
-                <p class="type-label" id="cad-2d-library-title">2D drawings</p>
-                <div class="cad-samples" id="cad-2d-samples" role="list"></div>
-              </div>
-              <div class="cad-library-section" aria-labelledby="cad-3d-library-title">
-                <p class="type-label" id="cad-3d-library-title">3D models</p>
-                <div class="cad-samples" id="cad-3d-samples" role="list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact" aria-labelledby="contact-title">
-        <div class="container contact">
-          <div class="section-head">
-            <p class="path">~/contact</p>
-            <h2 class="section-title" id="contact-title">Contact me</h2>
-          </div>
-
-          <div class="battle">
-            <div class="battle-text">
-              <p class="battle-line" id="battle-line"></p>
-              <p class="battle-sub" id="contact-intro"></p>
-            </div>
-            <ul class="battle-menu" id="contact-links" aria-label="Contact options">
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <p>&copy; <span id="year">2026</span> <span id="footer-name">Your Name</span></p>
-        <p class="footer-mono">Mechanical engineering portfolio</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manuel Giron — Physics, photonics & scientific computing</title>
+  <meta name="description" content="Manuel Giron is a physics undergraduate working in experimental photonics and scientific computing, with interests in high energy physics and quantum field theory.">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta property="og:title" content="Manuel Giron — From light to fields">
+  <meta property="og:description" content="Experimental photonics, numerical modeling, and a curiosity for fundamental physics. Explore research, publications, and experience.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="public/monogram.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="container navigation" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="monogram" aria-hidden="true">mg<span>·</span></span><span>Manuel Giron</span></a>
+      <div class="nav-links"><a href="#research">Research</a><a href="#publications">Publications</a><a href="#about">About</a><a class="nav-contact" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero container" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-line" aria-hidden="true"></span> Physics undergraduate · Florida Polytechnic</p>
+        <p class="hero-name">Manuel Giron</p>
+        <h1 id="hero-title">From light<br>to <em>fields.</em></h1>
+        <p class="hero-intro">I study how physical systems behave, through experiments, computation, and a growing interest in the fundamental.</p>
+        <p class="hero-detail">Currently working in experimental photonics. Looking ahead to high energy physics and quantum field theory.</p>
+        <div class="hero-actions"><a class="button primary" href="#research">Explore my research <span aria-hidden="true">↘</span></a><a class="text-link" href="public/Manuel-Giron-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </div>
-    </footer>
-
-    <script src="script.js" defer></script>
-    <script type="module" src="cad-viewer.js"></script>
-  </body>
+      <figure class="field-figure" aria-labelledby="field-title" aria-describedby="field-caption">
+        <div class="figure-heading"><span class="eyebrow" id="field-title">01 / A field in motion</span><span class="figure-mark" aria-hidden="true">φ(x, t)</span></div>
+        <svg id="field-plot" viewBox="0 0 600 330" role="img" aria-labelledby="plot-title plot-description">
+          <title id="plot-title">A free scalar wave packet</title>
+          <desc id="plot-description">An illustrative wave packet at a fixed time. Increasing the mass parameter changes its propagation and dispersion.</desc>
+          <defs><pattern id="plot-grid" width="46" height="44" patternUnits="userSpaceOnUse"><path d="M 46 0 L 0 0 0 44" fill="none" stroke="currentColor" stroke-width=".6"/></pattern></defs>
+          <rect class="plot-grid" x="24" y="22" width="552" height="264" fill="url(#plot-grid)"/>
+          <path class="plot-axis" d="M24 154H576 M300 22V286"/>
+          <path id="field-envelope" class="field-envelope" d="M24.00,154.00 L25.25,154.00 L26.51,154.00 L27.76,154.00 L29.02,154.00 L30.27,154.00 L31.53,154.00 L32.78,154.00 L34.04,154.00 L35.29,154.00 L36.55,154.00 L37.80,154.00 L39.05,154.00 L40.31,154.00 L41.56,154.00 L42.82,154.00 L44.07,154.00 L45.33,154.00 L46.58,154.00 L47.84,154.00 L49.09,154.00 L50.35,154.00 L51.60,154.00 L52.85,154.00 L54.11,154.00 L55.36,154.00 L56.62,154.00 L57.87,154.00 L59.13,154.00 L60.38,154.00 L61.64,154.00 L62.89,154.00 L64.15,154.00 L65.40,154.00 L66.65,154.00 L67.91,154.00 L69.16,154.00 L70.42,154.00 L71.67,154.00 L72.93,154.00 L74.18,154.00 L75.44,154.00 L76.69,154.00 L77.95,154.00 L79.20,154.00 L80.45,154.00 L81.71,154.00 L82.96,154.00 L84.22,154.00 L85.47,154.00 L86.73,154.00 L87.98,154.00 L89.24,154.00 L90.49,154.00 L91.75,154.00 L93.00,154.00 L94.25,154.00 L95.51,154.00 L96.76,154.00 L98.02,154.00 L99.27,154.00 L100.53,154.00 L101.78,154.00 L103.04,154.00 L104.29,154.00 L105.55,154.00 L106.80,154.00 L108.05,154.00 L109.31,154.00 L110.56,154.00 L111.82,154.00 L113.07,154.00 L114.33,154.00 L115.58,154.00 L116.84,154.00 L118.09,154.00 L119.35,154.00 L120.60,154.00 L121.85,154.00 L123.11,154.00 L124.36,154.00 L125.62,154.00 L126.87,154.00 L128.13,154.00 L129.38,154.00 L130.64,154.00 L131.89,154.00 L133.15,154.00 L134.40,154.00 L135.65,154.00 L136.91,154.00 L138.16,154.00 L139.42,154.00 L140.67,154.00 L141.93,154.00 L143.18,154.00 L144.44,154.00 L145.69,154.00 L146.95,154.00 L148.20,154.00 L149.45,154.00 L150.71,154.00 L151.96,154.00 L153.22,154.00 L154.47,154.00 L155.73,154.00 L156.98,154.00 L158.24,154.00 L159.49,154.00 L160.75,154.00 L162.00,154.00 L163.25,154.00 L164.51,154.00 L165.76,154.00 L167.02,154.00 L168.27,154.00 L169.53,154.00 L170.78,154.00 L172.04,154.00 L173.29,154.00 L174.55,154.00 L175.80,154.00 L177.05,154.00 L178.31,154.00 L179.56,154.00 L180.82,154.00 L182.07,154.00 L183.33,154.00 L184.58,154.00 L185.84,154.00 L187.09,154.00 L188.35,154.00 L189.60,154.00 L190.85,154.00 L192.11,154.00 L193.36,154.00 L194.62,154.00 L195.87,154.00 L197.13,154.00 L198.38,154.00 L199.64,154.00 L200.89,154.00 L202.15,154.00 L203.40,154.00 L204.65,154.00 L205.91,154.00 L207.16,154.00 L208.42,154.00 L209.67,154.00 L210.93,154.00 L212.18,154.00 L213.44,154.00 L214.69,154.00 L215.95,154.00 L217.20,154.00 L218.45,154.00 L219.71,154.00 L220.96,154.00 L222.22,154.00 L223.47,154.00 L224.73,154.00 L225.98,154.00 L227.24,153.99 L228.49,153.99 L229.75,153.99 L231.00,153.99 L232.25,153.99 L233.51,153.99 L234.76,153.99 L236.02,153.99 L237.27,153.98 L238.53,153.98 L239.78,153.98 L241.04,153.97 L242.29,153.97 L243.55,153.97 L244.80,153.96 L246.05,153.96 L247.31,153.95 L248.56,153.95 L249.82,153.94 L251.07,153.94 L252.33,153.93 L253.58,153.92 L254.84,153.91 L256.09,153.90 L257.35,153.88 L258.60,153.87 L259.85,153.86 L261.11,153.84 L262.36,153.82 L263.62,153.80 L264.87,153.77 L266.13,153.75 L267.38,153.72 L268.64,153.69 L269.89,153.65 L271.15,153.61 L272.40,153.57 L273.65,153.52 L274.91,153.47 L276.16,153.42 L277.42,153.35 L278.67,153.28 L279.93,153.21 L281.18,153.13 L282.44,153.04 L283.69,152.94 L284.95,152.84 L286.20,152.72 L287.45,152.60 L288.71,152.46 L289.96,152.31 L291.22,152.15 L292.47,151.98 L293.73,151.80 L294.98,151.59 L296.24,151.38 L297.49,151.15 L298.75,150.89 L300.00,150.62 L301.25,150.34 L302.51,150.03 L303.76,149.69 L305.02,149.34 L306.27,148.96 L307.53,148.56 L308.78,148.12 L310.04,147.67 L311.29,147.18 L312.55,146.66 L313.80,146.11 L315.05,145.53 L316.31,144.91 L317.56,144.26 L318.82,143.57 L320.07,142.84 L321.33,142.08 L322.58,141.28 L323.84,140.43 L325.09,139.54 L326.35,138.62 L327.60,137.64 L328.85,136.63 L330.11,135.57 L331.36,134.46 L332.62,133.31 L333.87,132.11 L335.13,130.87 L336.38,129.58 L337.64,128.24 L338.89,126.86 L340.15,125.43 L341.40,123.96 L342.65,122.44 L343.91,120.88 L345.16,119.28 L346.42,117.64 L347.67,115.95 L348.93,114.23 L350.18,112.48 L351.44,110.69 L352.69,108.86 L353.95,107.01 L355.20,105.13 L356.45,103.22 L357.71,101.30 L358.96,99.35 L360.22,97.39 L361.47,95.42 L362.73,93.43 L363.98,91.45 L365.24,89.46 L366.49,87.48 L367.75,85.50 L369.00,83.53 L370.25,81.58 L371.51,79.64 L372.76,77.73 L374.02,75.85 L375.27,74.00 L376.53,72.18 L377.78,70.41 L379.04,68.68 L380.29,67.00 L381.55,65.38 L382.80,63.81 L384.05,62.30 L385.31,60.86 L386.56,59.48 L387.82,58.18 L389.07,56.96 L390.33,55.81 L391.58,54.75 L392.84,53.77 L394.09,52.88 L395.35,52.08 L396.60,51.37 L397.85,50.75 L399.11,50.23 L400.36,49.81 L401.62,49.49 L402.87,49.26 L404.13,49.13 L405.38,49.11 L406.64,49.18 L407.89,49.35 L409.15,49.62 L410.40,49.99 L411.65,50.46 L412.91,51.02 L414.16,51.67 L415.42,52.41 L416.67,53.25 L417.93,54.17 L419.18,55.18 L420.44,56.27 L421.69,57.43 L422.95,58.67 L424.20,59.99 L425.45,61.37 L426.71,62.82 L427.96,64.33 L429.22,65.89 L430.47,67.51 L431.73,69.18 L432.98,70.90 L434.24,72.65 L435.49,74.44 L436.75,76.27 L438.00,78.12 L439.25,80.00 L440.51,81.90 L441.76,83.81 L443.02,85.74 L444.27,87.68 L445.53,89.62 L446.78,91.56 L448.04,93.50 L449.29,95.43 L450.55,97.35 L451.80,99.26 L453.05,101.16 L454.31,103.03 L455.56,104.89 L456.82,106.72 L458.07,108.52 L459.33,110.30 L460.58,112.05 L461.84,113.76 L463.09,115.44 L464.35,117.08 L465.60,118.68 L466.85,120.25 L468.11,121.77 L469.36,123.26 L470.62,124.70 L471.87,126.10 L473.13,127.46 L474.38,128.78 L475.64,130.05 L476.89,131.28 L478.15,132.47 L479.40,133.61 L480.65,134.71 L481.91,135.77 L483.16,136.78 L484.42,137.75 L485.67,138.69 L486.93,139.58 L488.18,140.43 L489.44,141.25 L490.69,142.02 L491.95,142.76 L493.20,143.47 L494.45,144.13 L495.71,144.77 L496.96,145.37 L498.22,145.94 L499.47,146.48 L500.73,146.99 L501.98,147.47 L503.24,147.92 L504.49,148.35 L505.75,148.75 L507.00,149.13 L508.25,149.49 L509.51,149.82 L510.76,150.13 L512.02,150.42 L513.27,150.70 L514.53,150.95 L515.78,151.19 L517.04,151.41 L518.29,151.62 L519.55,151.81 L520.80,151.99 L522.05,152.16 L523.31,152.31 L524.56,152.45 L525.82,152.58 L527.07,152.70 L528.33,152.82 L529.58,152.92 L530.84,153.01 L532.09,153.10 L533.35,153.18 L534.60,153.26 L535.85,153.32 L537.11,153.39 L538.36,153.44 L539.62,153.50 L540.87,153.54 L542.13,153.59 L543.38,153.63 L544.64,153.66 L545.89,153.70 L547.15,153.73 L548.40,153.75 L549.65,153.78 L550.91,153.80 L552.16,153.82 L553.42,153.84 L554.67,153.86 L555.93,153.87 L557.18,153.88 L558.44,153.90 L559.69,153.91 L560.95,153.92 L562.20,153.93 L563.45,153.93 L564.71,153.94 L565.96,153.95 L567.22,153.95 L568.47,153.96 L569.73,153.96 L570.98,153.97 L572.24,153.97 L573.49,153.98 L574.75,153.98 L576.00,153.98"/>
+          <path id="field-line" class="field-line" d="M24.00,154.00 L25.25,154.00 L26.51,154.00 L27.76,154.00 L29.02,154.00 L30.27,154.00 L31.53,154.00 L32.78,154.00 L34.04,154.00 L35.29,154.00 L36.55,154.00 L37.80,154.00 L39.05,154.00 L40.31,154.00 L41.56,154.00 L42.82,154.00 L44.07,154.00 L45.33,154.00 L46.58,154.00 L47.84,154.00 L49.09,154.00 L50.35,154.00 L51.60,154.00 L52.85,154.00 L54.11,154.00 L55.36,154.00 L56.62,154.00 L57.87,154.00 L59.13,154.00 L60.38,154.00 L61.64,154.00 L62.89,154.00 L64.15,154.00 L65.40,154.00 L66.65,154.00 L67.91,154.00 L69.16,154.00 L70.42,154.00 L71.67,154.00 L72.93,154.00 L74.18,154.00 L75.44,154.00 L76.69,154.00 L77.95,154.00 L79.20,154.00 L80.45,154.00 L81.71,154.00 L82.96,154.00 L84.22,154.00 L85.47,154.00 L86.73,154.00 L87.98,154.00 L89.24,154.00 L90.49,154.00 L91.75,154.00 L93.00,154.00 L94.25,154.00 L95.51,154.00 L96.76,154.00 L98.02,154.00 L99.27,154.00 L100.53,154.00 L101.78,154.00 L103.04,154.00 L104.29,154.00 L105.55,154.00 L106.80,154.00 L108.05,154.00 L109.31,154.00 L110.56,154.00 L111.82,154.00 L113.07,154.00 L114.33,154.00 L115.58,154.00 L116.84,154.00 L118.09,154.00 L119.35,154.00 L120.60,154.00 L121.85,154.00 L123.11,154.00 L124.36,154.00 L125.62,154.00 L126.87,154.00 L128.13,154.00 L129.38,154.00 L130.64,154.00 L131.89,154.00 L133.15,154.00 L134.40,154.00 L135.65,154.00 L136.91,154.00 L138.16,154.00 L139.42,154.00 L140.67,154.00 L141.93,154.00 L143.18,154.00 L144.44,154.00 L145.69,154.00 L146.95,154.00 L148.20,154.00 L149.45,154.00 L150.71,154.00 L151.96,154.00 L153.22,154.00 L154.47,154.00 L155.73,154.00 L156.98,154.00 L158.24,154.00 L159.49,154.00 L160.75,154.00 L162.00,154.00 L163.25,154.00 L164.51,154.00 L165.76,154.00 L167.02,154.00 L168.27,154.00 L169.53,154.00 L170.78,154.00 L172.04,154.00 L173.29,154.00 L174.55,154.00 L175.80,154.00 L177.05,154.00 L178.31,154.00 L179.56,154.00 L180.82,154.00 L182.07,154.00 L183.33,154.00 L184.58,154.00 L185.84,154.00 L187.09,154.00 L188.35,154.00 L189.60,154.00 L190.85,154.00 L192.11,154.00 L193.36,154.00 L194.62,154.00 L195.87,154.00 L197.13,154.00 L198.38,154.00 L199.64,154.00 L200.89,154.00 L202.15,154.00 L203.40,154.00 L204.65,154.00 L205.91,154.00 L207.16,154.00 L208.42,154.00 L209.67,154.00 L210.93,154.00 L212.18,154.00 L213.44,154.00 L214.69,154.00 L215.95,154.00 L217.20,154.00 L218.45,154.00 L219.71,154.00 L220.96,154.00 L222.22,154.00 L223.47,154.00 L224.73,154.00 L225.98,154.00 L227.24,154.00 L228.49,154.00 L229.75,154.00 L231.00,154.00 L232.25,154.00 L233.51,154.00 L234.76,154.00 L236.02,154.00 L237.27,154.00 L238.53,154.00 L239.78,154.00 L241.04,153.99 L242.29,153.99 L243.55,153.98 L244.80,153.97 L246.05,153.97 L247.31,153.96 L248.56,153.95 L249.82,153.94 L251.07,153.94 L252.33,153.93 L253.58,153.92 L254.84,153.92 L256.09,153.91 L257.35,153.91 L258.60,153.92 L259.85,153.93 L261.11,153.94 L262.36,153.96 L263.62,153.98 L264.87,154.01 L266.13,154.05 L267.38,154.09 L268.64,154.14 L269.89,154.20 L271.15,154.27 L272.40,154.34 L273.65,154.41 L274.91,154.49 L276.16,154.57 L277.42,154.64 L278.67,154.71 L279.93,154.78 L281.18,154.82 L282.44,154.85 L283.69,154.86 L284.95,154.84 L286.20,154.79 L287.45,154.70 L288.71,154.57 L289.96,154.40 L291.22,154.18 L292.47,153.91 L293.73,153.59 L294.98,153.22 L296.24,152.81 L297.49,152.35 L298.75,151.86 L300.00,151.35 L301.25,150.83 L302.51,150.32 L303.76,149.82 L305.02,149.36 L306.27,148.96 L307.53,148.65 L308.78,148.44 L310.04,148.36 L311.29,148.43 L312.55,148.67 L313.80,149.10 L315.05,149.74 L316.31,150.59 L317.56,151.67 L318.82,152.98 L320.07,154.50 L321.33,156.22 L322.58,158.12 L323.84,160.18 L325.09,162.35 L326.35,164.58 L327.60,166.83 L328.85,169.02 L330.11,171.09 L331.36,172.98 L332.62,174.59 L333.87,175.87 L335.13,176.73 L336.38,177.10 L337.64,176.92 L338.89,176.14 L340.15,174.71 L341.40,172.61 L342.65,169.82 L343.91,166.35 L345.16,162.22 L346.42,157.48 L347.67,152.20 L348.93,146.47 L350.18,140.40 L351.44,134.12 L352.69,127.77 L353.95,121.51 L355.20,115.51 L356.45,109.95 L357.71,105.00 L358.96,100.84 L360.22,97.62 L361.47,95.50 L362.73,94.61 L363.98,95.04 L365.24,96.88 L366.49,100.17 L367.75,104.91 L369.00,111.07 L370.25,118.58 L371.51,127.31 L372.76,137.13 L374.02,147.83 L375.27,159.21 L376.53,171.00 L377.78,182.94 L379.04,194.75 L380.29,206.11 L381.55,216.74 L382.80,226.36 L384.05,234.69 L385.31,241.48 L386.56,246.52 L387.82,249.64 L389.07,250.70 L390.33,249.64 L391.58,246.42 L392.84,241.08 L394.09,233.69 L395.35,224.41 L396.60,213.43 L397.85,200.98 L399.11,187.36 L400.36,172.86 L401.62,157.83 L402.87,142.64 L404.13,127.64 L405.38,113.19 L406.64,99.65 L407.89,87.33 L409.15,76.53 L410.40,67.50 L411.65,60.45 L412.91,55.53 L414.16,52.84 L415.42,52.42 L416.67,54.24 L417.93,58.24 L419.18,64.28 L420.44,72.18 L421.69,81.71 L422.95,92.62 L424.20,104.59 L425.45,117.33 L426.71,130.50 L427.96,143.78 L429.22,156.84 L430.47,169.37 L431.73,181.11 L432.98,191.78 L434.24,201.17 L435.49,209.11 L436.75,215.46 L438.00,220.15 L439.25,223.12 L440.51,224.39 L441.76,224.01 L443.02,222.07 L444.27,218.69 L445.53,214.04 L446.78,208.30 L448.04,201.67 L449.29,194.36 L450.55,186.59 L451.80,178.58 L453.05,170.55 L454.31,162.69 L455.56,155.18 L456.82,148.18 L458.07,141.84 L459.33,136.26 L460.58,131.52 L461.84,127.68 L463.09,124.77 L464.35,122.78 L465.60,121.69 L466.85,121.45 L468.11,122.01 L469.36,123.27 L470.62,125.15 L471.87,127.54 L473.13,130.34 L474.38,133.44 L475.64,136.73 L476.89,140.11 L478.15,143.48 L479.40,146.77 L480.65,149.89 L481.91,152.78 L483.16,155.39 L484.42,157.68 L485.67,159.63 L486.93,161.21 L488.18,162.44 L489.44,163.32 L490.69,163.86 L491.95,164.09 L493.20,164.04 L494.45,163.74 L495.71,163.23 L496.96,162.55 L498.22,161.74 L499.47,160.83 L500.73,159.86 L501.98,158.87 L503.24,157.89 L504.49,156.94 L505.75,156.04 L507.00,155.21 L508.25,154.46 L509.51,153.81 L510.76,153.26 L512.02,152.80 L513.27,152.45 L514.53,152.19 L515.78,152.01 L517.04,151.92 L518.29,151.90 L519.55,151.94 L520.80,152.03 L522.05,152.16 L523.31,152.32 L524.56,152.50 L525.82,152.69 L527.07,152.89 L528.33,153.09 L529.58,153.28 L530.84,153.46 L532.09,153.62 L533.35,153.77 L534.60,153.90 L535.85,154.01 L537.11,154.10 L538.36,154.17 L539.62,154.22 L540.87,154.26 L542.13,154.28 L543.38,154.29 L544.64,154.29 L545.89,154.28 L547.15,154.27 L548.40,154.25 L549.65,154.22 L550.91,154.20 L552.16,154.17 L553.42,154.14 L554.67,154.12 L555.93,154.09 L557.18,154.07 L558.44,154.05 L559.69,154.03 L560.95,154.02 L562.20,154.00 L563.45,153.99 L564.71,153.98 L565.96,153.98 L567.22,153.98 L568.47,153.97 L569.73,153.97 L570.98,153.97 L572.24,153.97 L573.49,153.98 L574.75,153.98 L576.00,153.98"/>
+          <text class="plot-label" x="566" y="307">x</text><text class="plot-label" x="310" y="35">φ</text><text class="plot-label" x="282" y="307">0</text>
+        </svg>
+        <div class="field-controls" hidden>
+          <div class="control-label"><label for="mass">Mass parameter <span class="math">m</span></label><output id="mass-value" for="mass">1.2</output></div>
+          <input id="mass" type="range" min="0" max="4" step="0.1" value="1.2" aria-describedby="field-caption">
+          <div class="control-scale"><span>0 · massless</span><span>4</span></div>
+        </div>
+        <figcaption id="field-caption"><span class="figure-caption-title">One equation. Different behavior.</span> A classical free-field illustration: change the mass to explore dispersion. Fixed time, natural units; <span class="math">ω² = k² + m²</span>. <span class="caption-note">An educational model, separate from my research.</span></figcaption>
+        <noscript><p class="caption-note">Static view at m = 1.2. Enable JavaScript to explore other masses.</p></noscript>
+        <details class="model-details"><summary>Behind the figure <span aria-hidden="true">+</span></summary><p>A Gaussian superposition of 81 plane waves solves the free Klein–Gordon equation in one spatial dimension. The solid line is the real field; the dashed line is the magnitude of its complex representation. The plot holds time at 3.2 and central wavenumber at 4, with c = ℏ = 1. This is a classical illustration, not a quantum simulation or experimental dataset.</p></details>
+      </figure>
+    </section>
+    <aside class="opportunity-strip container" aria-label="Opportunities sought"><span class="opportunity-label"><span class="status-dot" aria-hidden="true"></span> Open to what’s next</span><p>Summer research stays <span aria-hidden="true">/</span> Scientific computing & instrumentation opportunities</p><a href="#contact" aria-label="Discuss a research or industry opportunity">Get in touch <span aria-hidden="true">↗</span></a></aside>
+    <section class="section container" id="research" aria-labelledby="research-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / Selected work</p><h2 id="research-title">Questions into<br><em>understanding.</em></h2></div><p class="section-intro">From disordered optical systems to numerical models: a selection of the problems I’ve worked on, and how I approached them.</p></div>
+      <article class="research-feature">
+        <div class="research-art" aria-hidden="true"><svg viewBox="0 0 500 350"><defs><radialGradient id="scatter-glow"><stop stop-color="#7eb6a4" stop-opacity=".22"/><stop offset="1" stop-color="#7eb6a4" stop-opacity="0"/></radialGradient></defs><circle cx="250" cy="175" r="170" fill="url(#scatter-glow)"/><g fill="none" stroke="#73a998" stroke-width="1"><path d="M-10 225 128 176 210 230 279 92 373 158 510 60"/><path d="M-10 225 128 176 162 81 279 92 325 274 510 239" opacity=".6"/><path d="M128 176 373 158 210 230 325 274 279 92" opacity=".4"/><circle cx="250" cy="175" r="120" stroke-dasharray="2 8" opacity=".4"/><circle cx="250" cy="175" r="70" opacity=".15"/></g><g fill="#b8d8cb"><circle cx="128" cy="176" r="7"/><circle cx="210" cy="230" r="5"/><circle cx="279" cy="92" r="8"/><circle cx="373" cy="158" r="6"/><circle cx="162" cy="81" r="4"/><circle cx="325" cy="274" r="5"/></g><g fill="#b8d8cb" font-family="monospace" font-size="10" letter-spacing="2"><text x="28" y="34">DISORDER → FEEDBACK</text><text x="28" y="325">CONCEPTUAL SCHEMATIC / NOT MEASURED DATA</text></g></svg></div>
+        <div class="research-feature-copy"><p class="work-meta">Experimental photonics <span>May 2026 — present</span></p><h3>Finding order in<br>scattered light.</h3><p>I investigate random lasing and optical emission in biological scattering media at Florida Polytechnic University, including seashell-derived particles in Rhodamine B–glycerol.</p><p class="contribution"><strong>My contribution</strong> Sample preparation, pulsed-laser experiments, and Python workflows for peak fitting, linewidth analysis, and spectral comparisons. I also connect spectrometers, energy meters, motorized stages, and Arduino controls for automated measurements.</p><ul class="tags" aria-label="Methods"><li>Spectroscopy</li><li>Python</li><li>Data acquisition</li></ul><a class="text-link" href="#publications">Related research output <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <div class="work-grid">
+        <article class="work-card"><div class="work-card-top"><span class="work-number">02</span><span class="eyebrow">Numerical optics · 2026</span></div><h3>Designing light-selective<br>photonic glazing.</h3><p>A 33-layer TiO₂/CaF₂ structure with a Fabry–Perot cavity for passive solar heat management. I implemented transfer-matrix modeling with wavelength-dependent refractive indices across 400–1600 nm.</p><dl class="result-pair"><div><dt>≈40%</dt><dd>narrower cut-on transition</dd></div><div><dt>88.9%</dt><dd>photopic visible transmittance</dd></div></dl><p class="result-note">Simulation-derived results; no fabricated prototype. Comparison uses a layer-count-matched reference.</p><div class="work-card-footer"><span>Transfer matrices · Optical modeling</span><a href="https://doi.org/10.1364/AO.606352" target="_blank" rel="noopener noreferrer" aria-label="Read the photonic glazing paper (opens in a new tab)">Read paper ↗</a></div></article>
+        <article class="work-card"><div class="work-card-top"><span class="work-number">03</span><span class="eyebrow">Scientific computing · 2026</span></div><h3>Building models.<br>Checking the assumptions.</h3><p>For the Mathematical Contest in Modeling, I developed a lunar-colony logistics model for a proposed 100,000-person settlement, evaluating transportation capacity, resource constraints, and operational losses.</p><p>In numerical methods coursework, I implemented a one-dimensional finite-element heat-equation solver with implicit-Euler time stepping and checked convergence against a manufactured solution.</p><ul class="tags" aria-label="Methods"><li>Sensitivity analysis</li><li>Finite elements</li><li>Numerical validation</li></ul><div class="work-card-footer"><span>MCM/ICM · Numerical methods</span><a href="cv.html#projects">Project details ↗</a></div></article>
+      </div>
+      <div class="earlier-work"><span class="eyebrow">Also explored</span><p>Photonic-crystal cavity modeling for optical biosensing <span>2025</span></p><p>Martian methane production concepts · NASA MINDS, third place in the senior division <span>2023–24</span></p></div>
+    </section>
+    <section class="publications-band" id="publications" aria-labelledby="publications-title"><div class="container section">
+      <div class="section-heading"><div><p class="eyebrow">02 / In the literature</p><h2 id="publications-title">Written. Shared.<br><em>Still unfolding.</em></h2></div><p class="section-intro">Publications and presentations from my research in optics and photonics.</p></div>
+      <ol class="publication-list">
+        <li><div class="publication-index">01</div><div><p class="publication-status">Published <span>Applied Optics 65, 7235–7244 · 2026</span></p><h3><a href="https://doi.org/10.1364/AO.606352" target="_blank" rel="noopener noreferrer">Humidity-resilient TiO₂/CaF₂ photonic crystal smart window with a Fabry–Perot cavity for broadband near-infrared blocking in hot-humid subtropical climates: a design and simulation study <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></h3><p class="authors">Emadelden Fouad, A. F. Amin, <strong>Manuel Giron</strong>, and Arafa H. Aly</p><button class="citation-button" type="button" hidden>Copy citation <span aria-hidden="true">⧉</span></button><span class="citation-feedback" role="status"></span></div><span class="publication-year">2026</span></li>
+        <li><div class="publication-index">02</div><div><p class="publication-status in-progress">Manuscript in preparation</p><h3>Raman mode selection in dye-infused avian feather lasers with scattering-based feedback</h3><p class="authors">Rebecca R. Robinson, <strong>Manuel Giron</strong>, Hengzhou Liu, and Nathan J. Dawson</p></div><span class="publication-year">In prep.</span></li>
+        <li><div class="publication-index">03</div><div><p class="publication-status">Poster presentation</p><h3>NanoFlorida 2026</h3><p class="authors">Research poster presenter</p></div><span class="publication-year">2026</span></li>
+      </ol>
+    </div></section>
+    <section class="section container about-section" id="about" aria-labelledby="about-title">
+      <div class="about-copy"><p class="eyebrow">03 / A little context</p><h2 id="about-title">Curiosity, with<br><em>a method.</em></h2><p class="about-lede">I’m a physics undergraduate drawn to the connection between what we can measure and the theories that explain it.</p><p>My experience so far is in optics and photonics: preparing samples, collecting spectra, building analysis workflows, and testing numerical models. I’m especially interested in carrying those experimental and computational skills into high energy physics, while deepening my understanding of quantum field theory.</p><p>I’m looking for summer research stays and industry opportunities where I can contribute to scientific computing, instrumentation, or experimental analysis—and keep learning from the people around me.</p><div class="personal-note"><span aria-hidden="true">↳</span><p>Beyond the lab, I’ve taught SAT students and helped found Florida Poly’s Phi Sigma Pi chapter, where I serve as vice president. I speak Spanish and English, and I’m beginning to learn Japanese.</p></div><a class="text-link" href="cv.html">Read the full CV <span aria-hidden="true">↗</span></a></div>
+      <div class="about-details"><div class="education"><p class="eyebrow">Education</p><h3>Florida Polytechnic University</h3><p>B.S. Physics · Quantum Mechanics concentration</p><div class="education-meta"><span>2025 — expected 2028</span><span>3.85 / 4.00 GPA</span></div><p class="honor">Provost Scholarship</p><h3>Miami Dade College</h3><p>Associate in Arts</p><div class="education-meta"><span>2023 — 2025</span><span>4.00 / 4.00 GPA</span></div><p class="honor">Summa Cum Laude · President’s List</p></div><div class="toolkit"><p class="eyebrow">Tools I work with</p><dl><div><dt>Computation</dt><dd>Python · NumPy · SciPy · Matplotlib · MATLAB · C</dd></div><div><dt>Experiment</dt><dd>Optical spectroscopy · Pulsed lasers · LabVIEW · Arduino · Motion control</dd></div><div><dt>Methods</dt><dd>Curve fitting · Spectral processing · Transfer matrices · Numerical analysis</dd></div><div><dt>Communication</dt><dd>LaTeX · Research figures · Technical documentation</dd></div></dl></div></div>
+    </section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-inner"><div><p class="eyebrow">04 / The next question</p><h2 id="contact-title">Good physics starts<br>with a <em>conversation.</em></h2><p>Have a research question, a summer opportunity, or a technical problem to explore? I’d be glad to hear from you.</p><a class="contact-email" href="mailto:gironmphys@gmail.com">gironmphys@gmail.com <span aria-hidden="true">↗</span></a></div><div class="contact-links"><a href="public/Manuel-Giron-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a><a href="https://www.linkedin.com/in/manuelgiron0059" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://github.com/phys-manuelgiron" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><span class="location">Based in Lakeland, Florida</span></div></div></section>
+  </main>
+  <footer class="container footer"><p>© <span id="year">2026</span> Manuel Giron</p><p>Observe carefully. Question deeply.</p><a href="#top">Back to top ↑</a></footer>
+</body>
 </html>
